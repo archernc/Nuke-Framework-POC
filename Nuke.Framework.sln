@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{2B99452D-364F-4F6F-9292-8C62A66248EC}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Framework.App", "src\Nuke.Framework.App\Nuke.Framework.App.csproj", "{B3B18594-1DFD-4E42-8E39-BE0927824DDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{B9715476-2244-4BCE-9CEA-3FA2BD713975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Framework.Api", "src\Nuke.Framework.Api\Nuke.Framework.Api.csproj", "{CBC11B41-FC3F-4950-A27C-B3CE35539C69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A674C2BE-C30A-4F2E-9F3D-C6F35F424D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuke.Framework.Api.Tests", "src\Nuke.Framework.Api.Tests\Nuke.Framework.Api.Tests.csproj", "{8463034B-7087-4544-B926-80506393342F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\_build.csproj", "{95DC6FA9-BE39-4061-A4B7-F257FB21D45E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{AD272292-B845-485B-A5D9-CD977CC565F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3B18594-1DFD-4E42-8E39-BE0927824DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3B18594-1DFD-4E42-8E39-BE0927824DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3B18594-1DFD-4E42-8E39-BE0927824DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3B18594-1DFD-4E42-8E39-BE0927824DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC11B41-FC3F-4950-A27C-B3CE35539C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC11B41-FC3F-4950-A27C-B3CE35539C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC11B41-FC3F-4950-A27C-B3CE35539C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC11B41-FC3F-4950-A27C-B3CE35539C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8463034B-7087-4544-B926-80506393342F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8463034B-7087-4544-B926-80506393342F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8463034B-7087-4544-B926-80506393342F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8463034B-7087-4544-B926-80506393342F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DC6FA9-BE39-4061-A4B7-F257FB21D45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DC6FA9-BE39-4061-A4B7-F257FB21D45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3B18594-1DFD-4E42-8E39-BE0927824DDD} = {B9715476-2244-4BCE-9CEA-3FA2BD713975}
+		{CBC11B41-FC3F-4950-A27C-B3CE35539C69} = {B9715476-2244-4BCE-9CEA-3FA2BD713975}
+		{A674C2BE-C30A-4F2E-9F3D-C6F35F424D00} = {B9715476-2244-4BCE-9CEA-3FA2BD713975}
+		{8463034B-7087-4544-B926-80506393342F} = {A674C2BE-C30A-4F2E-9F3D-C6F35F424D00}
+		{95DC6FA9-BE39-4061-A4B7-F257FB21D45E} = {AD272292-B845-485B-A5D9-CD977CC565F6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A4C6D57-2ED3-4932-9D3E-86B2841B5788}
+	EndGlobalSection
+EndGlobal

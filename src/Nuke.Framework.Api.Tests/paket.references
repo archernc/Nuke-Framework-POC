@@ -1,0 +1,10 @@
+Microsoft.AspNet.Mvc
+Microsoft.AspNet.Razor
+Microsoft.AspNet.WebApi.Client
+Microsoft.AspNet.WebApi.Core
+Microsoft.AspNet.WebApi.WebHost
+Microsoft.AspNet.WebPages
+Microsoft.Web.Infrastructure
+MSTest.TestAdapter
+MSTest.TestFramework
+Newtonsoft.Json
