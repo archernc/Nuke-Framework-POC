@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nuke.Framework.Api;
-using Nuke.Framework.Api.Controllers;
+using Nuke.Framework.App.Controllers;
 
 namespace Nuke.Framework.Api.Tests.Controllers
 {

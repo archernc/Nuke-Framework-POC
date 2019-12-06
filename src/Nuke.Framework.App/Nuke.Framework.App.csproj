@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B3B18594-1DFD-4E42-8E39-BE0927824DDD}</ProjectGuid>
+    <ProjectGuid>{FB6E6C8E-E96A-4049-AADF-D5E6EDF4EF11}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -22,6 +23,7 @@
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -68,11 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="fonts\glyphicons-halflings-regular.ttf">
-      <Paket>True</Paket>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -83,10 +80,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css">
+    <Content Include="Content\bootstrap-grid.css">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Content\bootstrap-theme.min.css">
+    <Content Include="Content\bootstrap-grid.min.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.min.css">
       <Paket>True</Paket>
     </Content>
     <Content Include="Content\bootstrap.css">
@@ -96,15 +99,21 @@
       <Paket>True</Paket>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg">
-      <Paket>True</Paket>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\jquery-3.3.1-vsdoc.js">
+    <Content Include="Scripts\jquery-3.4.1-vsdoc.js">
       <Paket>True</Paket>
     </Content>
     <Content Include="Scripts\jquery.validate-vsdoc.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\index.d.ts">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.min.js">
       <Paket>True</Paket>
     </Content>
     <Content Include="Scripts\bootstrap.js">
@@ -113,17 +122,74 @@
     <Content Include="Scripts\bootstrap.min.js">
       <Paket>True</Paket>
     </Content>
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js">
+    <Content Include="Scripts\esm\popper-utils.js">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Scripts\jquery-3.3.1.min.js">
+    <Content Include="Scripts\esm\popper-utils.min.js">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Scripts\jquery-3.3.1.slim.js">
+    <Content Include="Scripts\esm\popper.js">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js">
+    <Content Include="Scripts\esm\popper.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\index.js.flow">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\esm\popper.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\esm\popper.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\esm\popper-utils.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\esm\popper-utils.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap.min.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.min.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-reboot.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-grid.min.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\bootstrap-grid.css.map">
+      <Paket>True</Paket>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.4.1.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.4.1.slim.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js">
       <Paket>True</Paket>
     </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -142,6 +208,219 @@
     <Content Include="Scripts\modernizr-2.8.3.js">
       <Paket>True</Paket>
     </Content>
+    <Content Include="Scripts\popper-utils.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper-utils.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\index.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\defaults.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\destroy.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\disableEventListeners.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\enableEventListeners.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\placements.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\methods\update.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\applyStyle.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\arrow.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\computeStyle.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\flip.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\hide.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\index.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\inner.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\keepTogether.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\offset.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\preventOverflow.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\modifiers\shift.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\clockwise.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\debounce.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\find.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\findIndex.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getBordersSize.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getBoundaries.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getClientRect.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOffsetParent.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOffsetRect.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOppositePlacement.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOppositeVariation.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getOuterSizes.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getParentNode.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getPopperOffsets.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getReferenceNode.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getRoot.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getScroll.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getScrollParent.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getWindow.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\getWindowSizes.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\includeScroll.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\index.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isBrowser.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isFixed.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isFunction.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isIE.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isModifierEnabled.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isModifierRequired.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isNumeric.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\isOffsetContainer.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\removeEventListeners.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\runModifiers.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\setAttributes.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\setStyles.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\src\utils\setupEventListeners.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper-utils.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper-utils.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper.min.js">
+      <Paket>True</Paket>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -156,41 +435,55 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper.js.flow">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper-utils.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\umd\popper-utils.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\README.md">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper-utils.min.js.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\popper-utils.js.map">
+      <Paket>True</Paket>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Content\bootstrap.min.css.map">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Content\bootstrap.css.map">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Content\bootstrap-theme.min.css.map">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Content\bootstrap-theme.css.map">
-      <Paket>True</Paket>
-    </Content>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="paket.references" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map">
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Scripts\jquery-3.3.1.min.map">
+    <Content Include="Scripts\jquery-3.4.1.min.map">
       <Paket>True</Paket>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -198,13 +491,14 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <PropertyGroup>
         <__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props>net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform</__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props>
       </PropertyGroup>
     </When>
   </Choose>
-  <Import Project="..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.codedom.providers.dotnetcompilerplatform\2.0.1\build\$(__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props).props" Condition="Exists('..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.codedom.providers.dotnetcompilerplatform\2.0.1\build\$(__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props).props')" Label="Paket" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform\build\$(__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props).props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform\build\$(__paket__Microsoft_CodeDom_Providers_DotNetCompilerPlatform_props).props')" Label="Paket" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
@@ -216,7 +510,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60521</DevelopmentServerPort>
+          <DevelopmentServerPort>57690</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:52691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -236,10 +530,10 @@
   </Target> -->
   <Import Project="..\..\.paket\paket.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Antlr3.Runtime">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\antlr\3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+          <HintPath>..\..\packages\Antlr\lib\Antlr3.Runtime.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -247,10 +541,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Mvc">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.mvc\5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.Mvc\lib\net45\System.Web.Mvc.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -258,10 +552,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Razor">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.razor\3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.Razor\lib\net45\System.Web.Razor.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -269,10 +563,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Optimization">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.web.optimization\1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization\lib\net40\System.Web.Optimization.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -280,25 +574,25 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Helpers">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.Helpers.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages.Deployment">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages.Razor">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -306,10 +600,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.codedom.providers.dotnetcompilerplatform\2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -317,10 +611,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.Web.Infrastructure">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.web.infrastructure\1.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.Web.Infrastructure\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -328,10 +622,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\newtonsoft.json\11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <HintPath>..\..\packages\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -339,10 +633,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="WebGrease">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\webgrease\1.6.0\lib\WebGrease.dll</HintPath>
+          <HintPath>..\..\packages\WebGrease\lib\WebGrease.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

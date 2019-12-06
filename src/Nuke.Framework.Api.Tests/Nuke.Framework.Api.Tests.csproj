@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8463034B-7087-4544-B926-80506393342F}</ProjectGuid>
+    <ProjectGuid>{AE75C8B6-8C9F-4E94-8A8A-3BD71E39B60C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nuke.Framework.Api.Tests</RootNamespace>
@@ -62,21 +62,25 @@
     <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Nuke.Framework.Api\Nuke.Framework.Api.csproj">
-      <Project>{CBC11B41-FC3F-4950-A27C-B3CE35539C69}</Project>
+    <ProjectReference Include="..\Nuke.Framework.Api\Nuke.Framework.Api.csproj">
+      <Project>{03BDF7CF-2D2A-414F-A62D-931FC8159498}</Project>
       <Name>Nuke.Framework.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nuke.Framework.App\Nuke.Framework.App.csproj">
+      <Project>{FB6E6C8E-E96A-4049-AADF-D5E6EDF4EF11}</Project>
+      <Name>Nuke.Framework.App</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <PropertyGroup>
         <__paket__MSTest_TestAdapter_props>net45\MSTest.TestAdapter</__paket__MSTest_TestAdapter_props>
         <__paket__MSTest_TestAdapter_targets>net45\MSTest.TestAdapter</__paket__MSTest_TestAdapter_targets>
       </PropertyGroup>
     </When>
   </Choose>
-  <Import Project="..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testadapter\1.2.1\build\$(__paket__MSTest_TestAdapter_props).props" Condition="Exists('..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testadapter\1.2.1\build\$(__paket__MSTest_TestAdapter_props).props')" Label="Paket" />
+  <Import Project="..\..\packages\MSTest.TestAdapter\build\$(__paket__MSTest_TestAdapter_props).props" Condition="Exists('..\..\packages\MSTest.TestAdapter\build\$(__paket__MSTest_TestAdapter_props).props')" Label="Paket" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -86,10 +90,10 @@
   -->
   <Import Project="..\..\.paket\paket.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Mvc">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.mvc\5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.Mvc\lib\net45\System.Web.Mvc.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -97,10 +101,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Razor">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.razor\3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.Razor\lib\net45\System.Web.Razor.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -108,10 +112,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Net.Http.Formatting">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webapi.client\5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client\lib\net45\System.Net.Http.Formatting.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -119,10 +123,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Http">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webapi.core\5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core\lib\net45\System.Web.Http.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -130,10 +134,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Http.WebHost">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webapi.webhost\5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost\lib\net45\System.Web.Http.WebHost.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -141,25 +145,25 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Web.Helpers">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.Helpers.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages.Deployment">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Web.WebPages.Razor">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.aspnet.webpages\3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.AspNet.WebPages\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -167,10 +171,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.Web.Infrastructure">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.web.infrastructure\1.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+          <HintPath>..\..\packages\Microsoft.Web.Infrastructure\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -178,15 +182,15 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testframework\1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+          <HintPath>..\..\packages\MSTest.TestFramework\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testframework\1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+          <HintPath>..\..\packages\MSTest.TestFramework\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -194,15 +198,15 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>..\..\..\..\..\Users\chad.bowman\.nuget\packages\newtonsoft.json\11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <HintPath>..\..\packages\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testadapter\1.2.1\build\$(__paket__MSTest_TestAdapter_targets).targets" Condition="Exists('..\..\..\..\..\Users\chad.bowman\.nuget\packages\mstest.testadapter\1.2.1\build\$(__paket__MSTest_TestAdapter_targets).targets')" Label="Paket" />
+  <Import Project="..\..\packages\MSTest.TestAdapter\build\$(__paket__MSTest_TestAdapter_targets).targets" Condition="Exists('..\..\packages\MSTest.TestAdapter\build\$(__paket__MSTest_TestAdapter_targets).targets')" Label="Paket" />
 </Project>

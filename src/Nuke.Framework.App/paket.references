@@ -11,4 +11,5 @@ Microsoft.jQuery.Unobtrusive.Validation
 Microsoft.Web.Infrastructure
 Modernizr
 Newtonsoft.Json
+popper.js
 WebGrease

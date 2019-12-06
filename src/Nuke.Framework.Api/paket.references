@@ -14,4 +14,5 @@ Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 Microsoft.Web.Infrastructure
 Modernizr
 Newtonsoft.Json
+popper.js
 WebGrease

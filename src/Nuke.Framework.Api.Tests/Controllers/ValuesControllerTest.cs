@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nuke.Framework.Api;
 using Nuke.Framework.Api.Controllers;
 
 namespace Nuke.Framework.Api.Tests.Controllers

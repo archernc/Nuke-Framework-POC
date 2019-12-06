@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95DC6FA9-BE39-4061-A4B7-F257FB21D45E}</ProjectGuid>
+    <ProjectGuid>{F038F056-794A-4724-B328-E00BB63F385C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>
     </RootNamespace>
@@ -36,10 +36,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,7 +63,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <PropertyGroup>
         <__paket__refit_targets>net461\refit</__paket__refit_targets>
       </PropertyGroup>
@@ -64,10 +71,10 @@
   </Choose>
   <Import Project="..\.paket\paket.targets" />
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="AutoMapper">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\automapper\6.0.2\lib\net45\AutoMapper.dll</HintPath>
+          <HintPath>..\packages\AutoMapper\lib\net461\AutoMapper.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -75,10 +82,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Colorful.Console">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\colorful.console\1.2.9\lib\net461\Colorful.Console.dll</HintPath>
+          <HintPath>..\packages\Colorful.Console\lib\net461\Colorful.Console.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -86,10 +93,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Glob">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\glob\1.1.5\lib\net46\Glob.dll</HintPath>
+          <HintPath>..\packages\Glob\lib\net46\Glob.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -97,10 +104,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="JetBrains.Annotations">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\jetbrains.annotations\2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+          <HintPath>..\packages\JetBrains.Annotations\lib\net20\JetBrains.Annotations.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -108,13 +115,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
-        <Reference Include="System.Configuration">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="Microsoft.Build">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.build\16.4.0\lib\net472\Microsoft.Build.dll</HintPath>
+          <HintPath>..\packages\Microsoft.Build\lib\net472\Microsoft.Build.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -122,13 +126,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
-        <Reference Include="System.Xaml">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="Microsoft.Build.Framework">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.build.framework\16.4.0\lib\net472\Microsoft.Build.Framework.dll</HintPath>
+          <HintPath>..\packages\Microsoft.Build.Framework\lib\net472\Microsoft.Build.Framework.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -136,19 +137,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
-        <Reference Include="System.Reflection">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="System.Security">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="System.Windows.Forms">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="Microsoft.Build.Tasks.Core">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.build.tasks.core\16.4.0\lib\net472\Microsoft.Build.Tasks.Core.dll</HintPath>
+          <HintPath>..\packages\Microsoft.Build.Tasks.Core\lib\net472\Microsoft.Build.Tasks.Core.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -156,10 +148,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.Build.Utilities.Core">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.build.utilities.core\16.4.0\lib\net472\Microsoft.Build.Utilities.Core.dll</HintPath>
+          <HintPath>..\packages\Microsoft.Build.Utilities.Core\lib\net472\Microsoft.Build.Utilities.Core.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -167,10 +159,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Microsoft.VisualStudio.Setup.Configuration.Interop">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\microsoft.visualstudio.setup.configuration.interop\1.16.30\lib\net35\Microsoft.VisualStudio.Setup.Configuration.Interop.dll</HintPath>
+          <HintPath>..\packages\Microsoft.VisualStudio.Setup.Configuration.Interop\lib\net35\Microsoft.VisualStudio.Setup.Configuration.Interop.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -178,10 +170,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\newtonsoft.json\11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <HintPath>..\packages\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -189,10 +181,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Newtonsoft.Json.Bson">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\newtonsoft.json.bson\1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+          <HintPath>..\packages\Newtonsoft.Json.Bson\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -200,10 +192,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Client">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.client\4.0.0\lib\net45\NuGet.Client.dll</HintPath>
+          <HintPath>..\packages\NuGet.Client\lib\net45\NuGet.Client.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -211,10 +203,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Common">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.common\4.9.4\lib\net46\NuGet.Common.dll</HintPath>
+          <HintPath>..\packages\NuGet.Common\lib\net472\NuGet.Common.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -222,10 +214,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Configuration">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.configuration\4.9.4\lib\net46\NuGet.Configuration.dll</HintPath>
+          <HintPath>..\packages\NuGet.Configuration\lib\net472\NuGet.Configuration.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -233,10 +225,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.ContentModel">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.contentmodel\4.0.0\lib\net45\NuGet.ContentModel.dll</HintPath>
+          <HintPath>..\packages\NuGet.ContentModel\lib\net45\NuGet.ContentModel.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -244,10 +236,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Frameworks">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.frameworks\4.9.4\lib\net46\NuGet.Frameworks.dll</HintPath>
+          <HintPath>..\packages\NuGet.Frameworks\lib\net472\NuGet.Frameworks.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -255,10 +247,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Packaging">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.packaging\4.9.4\lib\net46\NuGet.Packaging.dll</HintPath>
+          <HintPath>..\packages\NuGet.Packaging\lib\net472\NuGet.Packaging.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -266,10 +258,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Packaging.Core">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.packaging.core\4.9.4\lib\net46\NuGet.Packaging.Core.dll</HintPath>
+          <HintPath>..\packages\NuGet.Packaging.Core\lib\net472\NuGet.Packaging.Core.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -277,21 +269,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="NuGet.Packaging.Core.Types">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.packaging.core.types\4.0.0\lib\net45\NuGet.Packaging.Core.Types.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Repositories">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.repositories\4.0.0\lib\net45\NuGet.Repositories.dll</HintPath>
+          <HintPath>..\packages\NuGet.Repositories\lib\net45\NuGet.Repositories.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -299,10 +280,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.RuntimeModel">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.runtimemodel\4.0.0\lib\net45\NuGet.RuntimeModel.dll</HintPath>
+          <HintPath>..\packages\NuGet.RuntimeModel\lib\net45\NuGet.RuntimeModel.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -310,10 +291,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="NuGet.Versioning">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuget.versioning\4.9.4\lib\net46\NuGet.Versioning.dll</HintPath>
+          <HintPath>..\packages\NuGet.Versioning\lib\net472\NuGet.Versioning.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -321,7 +302,7 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Diagnostics.Process">
           <Paket>True</Paket>
@@ -339,7 +320,7 @@
           <Paket>True</Paket>
         </Reference>
         <Reference Include="Nuke.Common">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\nuke.common\0.23.4\lib\net472\Nuke.Common.dll</HintPath>
+          <HintPath>..\packages\Nuke.Common\lib\net472\Nuke.Common.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -347,10 +328,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="Octokit">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\octokit\0.24.0\lib\net45\Octokit.dll</HintPath>
+          <HintPath>..\packages\Octokit\lib\net46\Octokit.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -358,13 +339,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
-        <Reference Include="System.Web">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="Refit">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\refit\4.6.58\lib\net461\Refit.dll</HintPath>
+          <HintPath>..\packages\Refit\lib\net461\Refit.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -372,10 +350,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="ICSharpCode.SharpZipLib">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\sharpziplib\1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+          <HintPath>..\packages\SharpZipLib\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -383,10 +361,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Buffers">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.buffers\4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+          <HintPath>..\packages\System.Buffers\lib\netstandard2.0\System.Buffers.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -394,10 +372,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Collections.Immutable">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.collections.immutable\1.7.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+          <HintPath>..\packages\System.Collections.Immutable\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -405,13 +383,13 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="mscorlib">
           <Paket>True</Paket>
         </Reference>
         <Reference Include="System.Diagnostics.Process">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.diagnostics.process\4.3.0\lib\net461\System.Diagnostics.Process.dll</HintPath>
+          <HintPath>..\packages\System.Diagnostics.Process\lib\net461\System.Diagnostics.Process.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -419,10 +397,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.IO.FileSystem">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.io.filesystem\4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+          <HintPath>..\packages\System.IO.FileSystem\lib\net46\System.IO.FileSystem.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -430,10 +408,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.IO.FileSystem.Primitives">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.io.filesystem.primitives\4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+          <HintPath>..\packages\System.IO.FileSystem.Primitives\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -441,10 +419,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Memory">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.memory\4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+          <HintPath>..\packages\System.Memory\lib\netstandard2.0\System.Memory.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -452,13 +430,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
-        <Reference Include="System.Numerics">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="System.Numerics.Vectors">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.numerics.vectors\4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+          <HintPath>..\packages\System.Numerics.Vectors\lib\net46\System.Numerics.Vectors.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -466,10 +441,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Resources.Extensions">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.resources.extensions\4.7.0\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
+          <HintPath>..\packages\System.Resources.Extensions\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -477,10 +452,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Runtime.CompilerServices.Unsafe">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.runtime.compilerservices.unsafe\4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -488,10 +463,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Runtime.Serialization.Formatters">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.runtime.serialization.formatters\4.3.0\lib\net46\System.Runtime.Serialization.Formatters.dll</HintPath>
+          <HintPath>..\packages\System.Runtime.Serialization.Formatters\lib\net46\System.Runtime.Serialization.Formatters.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -499,10 +474,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Runtime.Serialization.Primitives">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.runtime.serialization.primitives\4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+          <HintPath>..\packages\System.Runtime.Serialization.Primitives\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -510,10 +485,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.Threading.Tasks.Dataflow">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.threading.tasks.dataflow\4.11.0\lib\netstandard2.0\System.Threading.Tasks.Dataflow.dll</HintPath>
+          <HintPath>..\packages\System.Threading.Tasks.Dataflow\lib\netstandard2.0\System.Threading.Tasks.Dataflow.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -521,10 +496,10 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="System.ValueTuple">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\system.valuetuple\4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+          <HintPath>..\packages\System.ValueTuple\lib\net47\System.ValueTuple.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -532,16 +507,16 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
       <ItemGroup>
         <Reference Include="YamlDotNet">
-          <HintPath>..\..\..\..\Users\chad.bowman\.nuget\packages\yamldotnet\5.2.1\lib\net45\YamlDotNet.dll</HintPath>
+          <HintPath>..\packages\YamlDotNet\lib\net45\YamlDotNet.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\..\..\..\Users\chad.bowman\.nuget\packages\nuke.common\0.23.4\build\Nuke.Common.targets" Condition="Exists('..\..\..\..\Users\chad.bowman\.nuget\packages\nuke.common\0.23.4\build\Nuke.Common.targets')" Label="Paket" />
-  <Import Project="..\..\..\..\Users\chad.bowman\.nuget\packages\refit\4.6.58\build\$(__paket__refit_targets).targets" Condition="Exists('..\..\..\..\Users\chad.bowman\.nuget\packages\refit\4.6.58\build\$(__paket__refit_targets).targets')" Label="Paket" />
+  <Import Project="..\packages\Nuke.Common\build\Nuke.Common.targets" Condition="Exists('..\packages\Nuke.Common\build\Nuke.Common.targets')" Label="Paket" />
+  <Import Project="..\packages\Refit\build\$(__paket__refit_targets).targets" Condition="Exists('..\packages\Refit\build\$(__paket__refit_targets).targets')" Label="Paket" />
 </Project>
