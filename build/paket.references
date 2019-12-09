@@ -1,2 +1,4 @@
+group Build
+
 Nuke.Common
 NuGet.Packaging.Core
