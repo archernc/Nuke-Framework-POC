@@ -1,12 +1,17 @@
 source https://api.nuget.org/v3/index.json
 
-framework: >= net472
+framework: auto-detect
 
+nuget Moq
 nuget NuGet.CommandLine
+nuget xunit
+nuget xunit.runner.visualstudio
+
 nuget Antlr 3.5.0.2
 nuget AutoMapper 9.0.0
 nuget bootstrap 4.4.1
 nuget Colorful.Console 1.2.9
+nuget coverlet.msbuild ~> 2.7.0
 nuget GitVersion.CommandLine 5.1.2
 nuget Glob 1.1.5
 nuget JetBrains.Annotations 2019.1.3
