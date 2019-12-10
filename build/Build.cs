@@ -126,7 +126,7 @@ class Build : NukeBuild
 	/// Runs all tests and generates report file(s)
 	/// </summary>
 	Target Test => _ => _
-	//.DependsOn(Compile)
+	.DependsOn(Compile)
 	.Produces($"{ArtifactsDirectory}/*.trx")
 	.Produces($"{ArtifactsDirectory}/*.xml")
 	.Partition(() => TestPartition)
