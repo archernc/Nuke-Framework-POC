@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nuke.Framework.App.Controllers;
+using Nuke.Framework.Api.Controllers;
 
-namespace Nuke.Framework.Api.Tests.Controllers
+namespace Nuke.Framework.Api.UnitTest.Controllers
 {
 	[TestClass]
 	public class HomeControllerTest

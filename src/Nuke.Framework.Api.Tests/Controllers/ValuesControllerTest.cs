@@ -1,13 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Nuke.Framework.Api.Controllers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nuke.Framework.Api.Controllers;
 
-namespace Nuke.Framework.Api.Tests.Controllers
+namespace Nuke.Framework.Api.UnitTest.Controllers
 {
 	[TestClass]
 	public class ValuesControllerTest

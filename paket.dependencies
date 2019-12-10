@@ -1,10 +1,6 @@
 source https://api.nuget.org/v3/index.json
 framework: >= 4.7.2
 
-nuget Moq
-nuget xunit
-nuget xunit.runner.visualstudio
-
 nuget Antlr ~> 3.5.0.2
 nuget AutoMapper ~> 9.0.0
 nuget bootstrap ~> 4.4.1
@@ -35,6 +31,7 @@ group Build
 	framework: netcore3.0, netstandard2.0, netstandard2.1
 	storage: none
 
+	nuget Microsoft.TestPlatform ~> 16.4.0
 	nuget NuGet.Packaging.Core 5.4.0
 	nuget Nuke.Common 0.23.4
 
@@ -42,5 +39,6 @@ group Test
 	source https://api.nuget.org/v3/index.json
 	framework: >= 4.7.2
 
+	nuget Moq ~> 4.13.1
 	nuget MSTest.TestAdapter ~> 2.0.0
 	nuget MSTest.TestFramework ~> 2.0.0
