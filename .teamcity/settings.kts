@@ -54,6 +54,7 @@ object Develop : BuildType({
 
     triggers {
         vcs {
+            triggerRules = """-:comment=(\*{3}NO_CI\*{3}):**"""
             branchFilter = "+:refs/heads/develop"
             perCheckinTriggering = true
             groupCheckinsByCommitter = true
