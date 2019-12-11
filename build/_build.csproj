@@ -36,5 +36,5 @@
     <None Include="..\appveyor.yml" LinkBase="ci" Condition="Exists('..\appveyor.yml')" />
     <None Include="..\.travis.yml" LinkBase="ci" Condition="Exists('..\.travis.yml')" />
   </ItemGroup>
-  <Import Project="..\.paket\paket.targets" />
+  <Import Project="..\.paket\paket.restore.targets" />
 </Project>
