@@ -126,7 +126,7 @@ class Build : NukeBuild
 	/// Runs all tests and generates report file(s)
 	/// </summary>
 	Target Test => _ => _
-	//.DependsOn(Compile)
+	.DependsOn(Compile)
 	.Produces($"{ArtifactsDirectory}/*.trx")
 	.Produces($"{ArtifactsDirectory}/*.xml")
 	.Partition(() => TestPartition)
@@ -136,7 +136,6 @@ class Build : NukeBuild
 		if (projects.Any())
 		{
 			VSTest(_ => _
-			.SetEnableCodeCoverage(IsServerBuild)
 			.CombineWith(projects,
 				(_, v) => _
 				.SetTestAssemblies((v.Directory / "bin" / Configuration).GlobFiles("*.*Test.dll").Select(a => a.ToString()))
@@ -179,5 +178,13 @@ class Build : NukeBuild
 		//			)
 		//		)
 		//	);
+	});
+
+	Target DotCover => _ => _
+	.DependsOn(Test)
+	.Executes(() =>
+	{
+		//https://nuke.build/api/Nuke.Common/Nuke.Common.Tools.DotCover.DotCoverTasks.html
+		//DotCoverTasks.DotCoverCover();
 	});
 }
