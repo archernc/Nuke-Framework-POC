@@ -294,9 +294,11 @@ _Pvt_Extensions
 
 # Paket dependency manager
 .paket/*
-paket-files/
 !.paket/paket.exe
+!.paket/paket.bootstrapper.exe
+!.paket/paket.targets
 !.paket/Paket.Restore.targets
+paket-files/
 
 # FAKE - F# Make
 .fake/

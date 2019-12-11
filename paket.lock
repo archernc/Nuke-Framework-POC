@@ -41,6 +41,7 @@ NUGET
     Newtonsoft.Json (12.0.3)
     Newtonsoft.Json.Bson (1.0.2)
       Newtonsoft.Json (>= 12.0.1)
+    NuGet.CommandLine (5.3.1)
     popper.js (1.16)
     WebGrease (1.6)
       Antlr (>= 3.4.1.9004)

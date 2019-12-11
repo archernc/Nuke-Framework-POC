@@ -1,5 +1,4 @@
 Microsoft.AspNet.Mvc
 group Test
-	//Moq
-	MSTest.TestAdapter
-	MSTest.TestFramework
+MSTest.TestAdapter
+MSTest.TestFramework

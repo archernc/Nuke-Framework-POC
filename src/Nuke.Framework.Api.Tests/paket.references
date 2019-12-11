@@ -1,6 +1,5 @@
 Microsoft.AspNet.Mvc
 Microsoft.AspNet.WebApi.Core
 group Test
-	//Moq
-	MSTest.TestAdapter
-	MSTest.TestFramework
+MSTest.TestAdapter
+MSTest.TestFramework
