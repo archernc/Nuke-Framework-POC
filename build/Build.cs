@@ -126,23 +126,29 @@ class Build : NukeBuild
 	/// Runs all tests and generates report file(s)
 	/// </summary>
 	Target Test => _ => _
-	.DependsOn(Compile)
+	//.DependsOn(Compile)
 	.Produces($"{ArtifactsDirectory}/*.trx")
 	.Produces($"{ArtifactsDirectory}/*.xml")
 	.Partition(() => TestPartition)
 	.Executes(() =>
 	{
-
 		var projects = TestPartition.GetCurrent(Solution.GetProjects("*.*Test"));
 		if (projects.Any())
 		{
 			VSTest(_ => _
-			//.EnableEnableCodeCoverage()
 			.SetEnableCodeCoverage(IsServerBuild)
 			.CombineWith(projects,
 				(_, v) => _
 				.SetTestAssemblies((v.Directory / "bin" / Configuration).GlobFiles("*.*Test.dll").Select(a => a.ToString()))
-				.SetLogger(Host == HostType.TeamCity ? "TeamCity" : $"trx;LogFileName={v.Name}.trx")
+				.SetLogger(Host == HostType.TeamCity
+					? "TeamCity"
+					: $"trx;LogFileName={v.Name}.trx"
+				)
+				.SetTestAdapterPath(IsServerBuild
+					? $"{NuGetPackageResolver.GetLocalInstalledPackage("teamcity.vstest.testadapter", NuGetPackagesConfigFile)?.Directory}/build/_common/vstest15"
+					: "."
+				)
+
 			));
 		}
 

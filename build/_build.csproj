@@ -17,6 +17,7 @@
     <PackageDownload Include="JetBrains.ReSharper.CommandLineTools" Version="[2019.2.3]" />
     <PackageDownload Include="OctopusTools" Version="[6.15.1]" />
     <PackageDownload Include="ReportGenerator" Version="[4.2.20]" />
+	<PackageDownload Include="TeamCity.VSTest.TestAdapter" Version="[1.0.17]" />
   </ItemGroup>
   <ItemGroup>
     <NukeSpecificationFiles Include="**\*.json" Exclude="bin\**;obj\**" />
@@ -36,5 +37,5 @@
     <None Include="..\appveyor.yml" LinkBase="ci" Condition="Exists('..\appveyor.yml')" />
     <None Include="..\.travis.yml" LinkBase="ci" Condition="Exists('..\.travis.yml')" />
   </ItemGroup>
-  <Import Project="..\.paket\paket.restore.targets" />
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
