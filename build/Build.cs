@@ -209,14 +209,5 @@ class Build : NukeBuild
 			.SetPackageVersion(GitVersion.NuGetVersionV2)
 			.SetOutputDirectory(NuGetOutputDirectory)
 		);
-
-		//DotNetPack(_ => _
-		//	.SetProject(Solution)
-		//	.SetNoBuild(ExecutingTargets.Contains(Compile))
-		//	.SetConfiguration(Configuration)
-		//	.SetOutputDirectory(NuGetOutputDirectory)
-		//	.SetVersion(GitVersion.NuGetVersionV2)
-		//	//.SetPackageReleaseNotes(GetNuGetReleaseNotes($"{RootDirectory}/CHANGELOG.md", GitRepository))
-		//);
 	});
 }
