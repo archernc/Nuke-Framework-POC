@@ -180,8 +180,13 @@ class Build : NukeBuild
 		//	);
 	});
 
-	Target DotCover => _ => _
+	string CoverageReportDirectory => $"{ArtifactsDirectory}/coverage-report";
+	string CoverageReportArchive => $"{ArtifactsDirectory}/coverage-report.zip";
+
+	Target Coverage => _ => _
 	.DependsOn(Test)
+	//.TriggeredBy(Test)
+	.Produces(CoverageReportArchive)
 	.Executes(() =>
 	{
 		//https://nuke.build/api/Nuke.Common/Nuke.Common.Tools.DotCover.DotCoverTasks.html
