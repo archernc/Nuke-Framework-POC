@@ -1,25 +1,25 @@
-using System;
-using System.Linq;
 using Nuke.Common;
+using Nuke.Common.CI;
 using Nuke.Common.CI.TeamCity;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.DotCover;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.InspectCode;
 using Nuke.Common.Tools.MSBuild;
+using Nuke.Common.Tools.Paket;
 using Nuke.Common.Tools.VSTest;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.CI.TeamCity.TeamCity;
-using static Nuke.Common.EnvironmentInfo;
+using System;
+using System.Linq;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.InspectCode.InspectCodeTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
+using static Nuke.Common.Tools.Paket.PaketTasks;
 using static Nuke.Common.Tools.VSTest.VSTestTasks;
-using Nuke.Common.CI;
-using Nuke.Common.Tools.DotCover;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
@@ -191,5 +191,32 @@ class Build : NukeBuild
 	{
 		//https://nuke.build/api/Nuke.Common/Nuke.Common.Tools.DotCover.DotCoverTasks.html
 		//DotCoverTasks.DotCoverCover();
+	});
+
+	/// <summary>
+	/// Creates NuGet package(s) that can be pushed to NuGet server.
+	/// Implements Paket
+	/// </summary>
+	Target NuGet_Pack => _ => _
+	.DependsOn(Test)
+	.Produces($"{NuGetOutputDirectory}/*.nupkg")
+	.Executes(() =>
+	{
+		PaketPack(_ => _
+			.SetToolPath($"{RootDirectory}/.paket/paket.exe")
+			.SetLockDependencies(true)
+			.SetBuildConfiguration(Configuration)
+			.SetPackageVersion(GitVersion.NuGetVersionV2)
+			.SetOutputDirectory(NuGetOutputDirectory)
+		);
+
+		//DotNetPack(_ => _
+		//	.SetProject(Solution)
+		//	.SetNoBuild(ExecutingTargets.Contains(Compile))
+		//	.SetConfiguration(Configuration)
+		//	.SetOutputDirectory(NuGetOutputDirectory)
+		//	.SetVersion(GitVersion.NuGetVersionV2)
+		//	//.SetPackageReleaseNotes(GetNuGetReleaseNotes($"{RootDirectory}/CHANGELOG.md", GitRepository))
+		//);
 	});
 }

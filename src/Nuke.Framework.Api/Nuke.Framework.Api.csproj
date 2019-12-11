@@ -224,6 +224,7 @@
     <Content Include="Content\bootstrap-grid.css.map">
       <Paket>True</Paket>
     </Content>
+    <Content Include="paket.template" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js">
       <Paket>True</Paket>

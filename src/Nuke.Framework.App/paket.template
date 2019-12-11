@@ -1,0 +1,5 @@
+type project
+include-pdbs true
+authors FusionConnect
+description
+  description of this test package
