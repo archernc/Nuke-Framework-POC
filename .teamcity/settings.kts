@@ -48,7 +48,7 @@ object Develop : BuildType({
             scriptMode = file {
                 path = "build.ps1"
             }
-            param("jetbrains_powershell_scriptArguments", "--nologo --target Test")
+            param("jetbrains_powershell_scriptArguments", "--nologo --target Octo_Push")
         }
     }
 
