@@ -9,6 +9,7 @@ using Nuke.Common.Tools.DotCover;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.InspectCode;
 using Nuke.Common.Tools.MSBuild;
+using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Tools.Paket;
 using Nuke.Common.Tools.VSTest;
 using Nuke.Common.Utilities.Collections;
@@ -18,6 +19,7 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.InspectCode.InspectCodeTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
+using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using static Nuke.Common.Tools.Paket.PaketTasks;
 using static Nuke.Common.Tools.VSTest.VSTestTasks;
 
@@ -40,7 +42,7 @@ class Build : NukeBuild
 	///   - Microsoft VisualStudio     https://nuke.build/visualstudio
 	///   - Microsoft VSCode           https://nuke.build/vscode
 
-	public static int Main() => Execute<Build>(x => x.Test);
+	public static int Main() => Execute<Build>(x => x.NuGet_Push);
 
 	[Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
 	readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -150,34 +152,6 @@ class Build : NukeBuild
 
 			));
 		}
-
-		//DotNetTest(_ => _
-		//	.SetConfiguration(Configuration)
-		//	.SetNoBuild(InvokedTargets.Contains(Compile))
-		//	.ResetVerbosity()
-		//	.SetResultsDirectory(ArtifactsDirectory)
-		//	.When(InvokedTargets.Contains(Coverage) || IsServerBuild,
-		//		_ => _
-		//		.SetProperty("CollectCoverage", propertyValue: true)
-		//		// CoverletOutputFormat: json (default), lcov, opencover, cobertura, teamcity
-		//		.SetProperty("CoverletOutputFormat", "teamcity%2copencover")
-		//		//.EnableCollectCoverage()
-		//		//.SetCoverletOutputFormat(CoverletOutputFormat.teamcity)
-		//		.When(IsServerBuild, _ => _
-		//			.SetProperty("UseSourceLink", propertyValue: true)
-		//			//.EnableUseSourceLink()
-		//			)
-		//		)
-		//	.CombineWith(TestPartition.GetCurrent(Solution.GetProjects("*.UnitTest")), (_, v) => _
-		//		.SetProjectFile(v)
-		//		.SetLogger($"trx;LogFileName={v.Name}.trx")
-		//		.When(InvokedTargets.Contains(Coverage) || IsServerBuild,
-		//			_ => _
-		//			.SetProperty("CoverletOutput", $"{ArtifactsDirectory}/{v.Name}.xml")
-		//			//.SetCoverletOutput(ArtifactsDirectory / $"{v.Name}.xml")
-		//			)
-		//		)
-		//	);
 	});
 
 	string CoverageReportDirectory => $"{ArtifactsDirectory}/coverage-report";
@@ -202,6 +176,7 @@ class Build : NukeBuild
 	.Produces($"{NuGetOutputDirectory}/*.nupkg")
 	.Executes(() =>
 	{
+		// utilizes paket.template file to construct package
 		PaketPack(_ => _
 			.SetToolPath($"{RootDirectory}/.paket/paket.exe")
 			.SetLockDependencies(true)
@@ -209,5 +184,38 @@ class Build : NukeBuild
 			.SetPackageVersion(GitVersion.NuGetVersionV2)
 			.SetOutputDirectory(NuGetOutputDirectory)
 		);
+	});
+
+	/// <summary>
+	/// Pushes all packages generated from <see cref="NuGet_Pack">NuGet_Pack</see> to the NuGet repository
+	/// Implements DotNetNuGet
+	/// </summary>
+	Target NuGet_Push => _ => _
+	.DependsOn(NuGet_Pack)
+	.Requires(() => !string.IsNullOrWhiteSpace(NUGET_SERVER_KEY))
+	.Requires(() => !string.IsNullOrWhiteSpace(NUGET_SERVER_URL))
+	.Executes(() =>
+	{
+		var packages = NuGetOutputDirectory.GlobFiles("*.nupkg");
+		if (packages.Any())
+		{
+			// requires NuGet.CommandLine
+			//NuGetPush(_ => _
+			//	.SetApiKey(NUGET_SERVER_KEY)
+			//	.SetSource(NUGET_SERVER_URL)
+			//	.CombineWith(packages, (_, v) => _.SetTargetPath(v)),
+			//	degreeOfParallelism: 5,
+			//	completeOnFailure: true
+			//);
+
+			PaketPush(_ => _
+				.SetToolPath($"{RootDirectory}/.paket/paket.exe")
+				.SetApiKey(NUGET_SERVER_KEY)
+				.SetUrl(NUGET_SERVER_URL)
+				.CombineWith(packages, (_, v) => _.SetFile(v)),
+				degreeOfParallelism: 5,
+				completeOnFailure: true
+			);
+		}
 	});
 }
