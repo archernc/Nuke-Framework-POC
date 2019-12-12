@@ -34,7 +34,7 @@ class Build : NukeBuild
 	///   - Microsoft VisualStudio     https://nuke.build/visualstudio
 	///   - Microsoft VSCode           https://nuke.build/vscode
 
-	public static int Main() => Execute<Build>(x => x.Octo_Pack);
+	public static int Main() => Execute<Build>(x => x.Octo_Push);
 
 	[Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
 	readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -114,7 +114,7 @@ class Build : NukeBuild
 				.SetMaxCpuCount(Environment.ProcessorCount)
 				.SetNodeReuse(IsLocalBuild);
 
-				if (InvokedTargets.Contains(Octo_Pack) || IsServerBuild)
+				if (InvokedTargets.Contains(Octo_Pack) || InvokedTargets.Contains(Octo_Push) || IsServerBuild)
 				{
 					_ = _.AddProperty("RunOctoPack", "true")
 					.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
@@ -237,5 +237,26 @@ class Build : NukeBuild
 	{
 		// The packaging is part of the MSBuild step for frameworks projects.
 		//TODO: Docker packages may need a different process
+	});
+
+	/// <summary>
+	/// Pushes all packages generated from <see cref="Octo_Pack">Octo_Pack</see> to the Octopus repository
+	/// </summary>
+	Target Octo_Push => _ => _
+	.DependsOn(Compile)
+	.Requires(() => !string.IsNullOrWhiteSpace(OCTOPUS_DEPLOY_SERVER))
+	.Requires(() => !string.IsNullOrWhiteSpace(OCTOPACK_PUBLISH_APIKEY))
+	.Executes(() =>
+	{
+		var packages = OctopusOutputDirectory.GlobFiles("*.nupkg");
+		if (packages.Any())
+		{
+			OctopusPush(_ => _
+			.SetServer(OCTOPUS_DEPLOY_SERVER)
+			.SetApiKey(OCTOPACK_PUBLISH_APIKEY)
+			.EnableReplaceExisting() // keeps from failing the build
+			.CombineWith(packages, (_, v) => _.SetPackage(v))
+			);
+		}
 	});
 }
