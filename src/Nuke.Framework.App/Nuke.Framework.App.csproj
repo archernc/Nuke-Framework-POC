@@ -644,4 +644,5 @@
       </ItemGroup>
     </When>
   </Choose>
+  <Import Project="..\..\packages\Octopack\build\OctoPack.targets" Condition="Exists('..\..\packages\Octopack\build\OctoPack.targets')" Label="Paket" />
 </Project>

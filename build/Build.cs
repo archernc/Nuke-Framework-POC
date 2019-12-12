@@ -1,6 +1,5 @@
 using Nuke.Common;
 using Nuke.Common.CI;
-using Nuke.Common.CI.TeamCity;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.ProjectModel;
@@ -10,6 +9,7 @@ using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.InspectCode;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.NuGet;
+using Nuke.Common.Tools.Octopus;
 using Nuke.Common.Tools.Paket;
 using Nuke.Common.Tools.VSTest;
 using Nuke.Common.Utilities.Collections;
@@ -19,21 +19,13 @@ using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.InspectCode.InspectCodeTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
-using static Nuke.Common.Tools.NuGet.NuGetTasks;
+using static Nuke.Common.Tools.Octopus.OctopusTasks;
 using static Nuke.Common.Tools.Paket.PaketTasks;
 using static Nuke.Common.Tools.VSTest.VSTestTasks;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
 [TeamCitySetDotCoverHomePath]
-[TeamCity(
-	TeamCityAgentPlatform.Windows,
-	DefaultBranch = "Develop",
-	//VcsTriggeredTargets = new[] { nameof(Pack), nameof(Test) },
-	//NightlyTriggeredTargets = new[] { nameof(Pack), nameof(Test) },
-	//ManuallyTriggeredTargets = new[] { nameof(Publish) },
-	NonEntryTargets = new[] { nameof(Restore) },
-	ExcludedTargets = new[] { nameof(Clean) })]
 class Build : NukeBuild
 {
 	/// Support plugins are available for:
@@ -42,7 +34,7 @@ class Build : NukeBuild
 	///   - Microsoft VisualStudio     https://nuke.build/visualstudio
 	///   - Microsoft VSCode           https://nuke.build/vscode
 
-	public static int Main() => Execute<Build>(x => x.NuGet_Push);
+	public static int Main() => Execute<Build>(x => x.Octo_Pack);
 
 	[Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
 	readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -105,21 +97,37 @@ class Build : NukeBuild
 	});
 
 	/// <summary>
-	/// Build
+	/// Build & Generates NuGet packages for Octopus Deploy
 	/// </summary>
 	Target Compile => _ => _
 		.DependsOn(Restore)
 		.Executes(() =>
 		{
-			MSBuild(_ => _
-				.SetTargetPath(Solution)
+			MSBuild(_ =>
+			{
+				_.SetTargetPath(Solution)
 				.SetTargets("Rebuild")
 				.SetConfiguration(Configuration)
 				.SetAssemblyVersion(GitVersion.AssemblySemVer)
 				.SetFileVersion(GitVersion.AssemblySemFileVer)
 				.SetInformationalVersion(GitVersion.InformationalVersion)
 				.SetMaxCpuCount(Environment.ProcessorCount)
-				.SetNodeReuse(IsLocalBuild));
+				.SetNodeReuse(IsLocalBuild);
+
+				if (InvokedTargets.Contains(Octo_Pack) || IsServerBuild)
+				{
+					_ = _.AddProperty("RunOctoPack", "true")
+					.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
+					.AddProperty("OctoPackEnforceAddingFiles", "true")
+					.AddProperty("OctoPackAppendProjectToFeed", "true")
+					.AddProperty("OctoPackNuGetProperties", $"buildDate={DateTime.Now};author=TeamCity;")
+					.AddProperty("OctoPackPublishPackagesToTeamCity", "true")
+					.AddProperty("OctoPackPublishPackageToFileShare", OctopusOutputDirectory)
+					.EnableTreatWarningsAsErrors();
+				}
+
+				return _;
+			});
 		});
 
 	// http://www.nuke.build/docs/authoring-builds/ci-integration.html#partitioning
@@ -217,5 +225,17 @@ class Build : NukeBuild
 				completeOnFailure: true
 			);
 		}
+	});
+
+	/// <summary>
+	/// This is just a convenience target to force the output of packages
+	/// </summary>
+	Target Octo_Pack => _ => _
+	.DependsOn(Compile)
+	.Produces($"{OctopusOutputDirectory}/*.nupkg")
+	.Executes(() =>
+	{
+		// The packaging is part of the MSBuild step for frameworks projects.
+		//TODO: Docker packages may need a different process
 	});
 }
