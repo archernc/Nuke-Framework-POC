@@ -34,7 +34,7 @@ class Build : NukeBuild
 	///   - Microsoft VisualStudio     https://nuke.build/visualstudio
 	///   - Microsoft VSCode           https://nuke.build/vscode
 
-	public static int Main() => Execute<Build>(x => x.Octo_Push);
+	public static int Main() => Execute<Build>(x => x.Test);
 
 	[Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
 	readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -59,23 +59,23 @@ class Build : NukeBuild
 	/// Removes previously built artifacts
 	/// </summary>
 	Target Clean => _ => _
-		.Before(Restore)
-		.Executes(() =>
-		{
-			SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-			EnsureCleanDirectory(ArtifactsDirectory);
-		});
+	.Before(Restore)
+	.Executes(() =>
+	{
+		SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
+		EnsureCleanDirectory(ArtifactsDirectory);
+	});
 
 	/// <summary>
 	/// This will restore all paket references
 	/// </summary>
 	Target Restore => _ => _
-		.Executes(() =>
-		{
-			MSBuild(_ => _
-				.SetTargetPath(Solution)
-				.SetTargets("Restore"));
-		});
+	.Executes(() =>
+	{
+		MSBuild(_ => _
+			.SetTargetPath(Solution)
+			.SetTargets("Restore"));
+	});
 
 	/// <summary>
 	/// Runs JetBrains.ReSharper code analysis
@@ -100,35 +100,35 @@ class Build : NukeBuild
 	/// Build & Generates NuGet packages for Octopus Deploy
 	/// </summary>
 	Target Compile => _ => _
-		.DependsOn(Restore)
-		.Executes(() =>
+	.DependsOn(Restore)
+	.Executes(() =>
+	{
+		MSBuild(_ =>
 		{
-			MSBuild(_ =>
+			_.SetTargetPath(Solution)
+			.SetTargets("Rebuild")
+			.SetConfiguration(Configuration)
+			.SetAssemblyVersion(GitVersion.AssemblySemVer)
+			.SetFileVersion(GitVersion.AssemblySemFileVer)
+			.SetInformationalVersion(GitVersion.InformationalVersion)
+			.SetMaxCpuCount(Environment.ProcessorCount)
+			.SetNodeReuse(IsLocalBuild);
+
+			if (InvokedTargets.Contains(Octo_Pack) || InvokedTargets.Contains(Octo_Push) || IsServerBuild)
 			{
-				_.SetTargetPath(Solution)
-				.SetTargets("Rebuild")
-				.SetConfiguration(Configuration)
-				.SetAssemblyVersion(GitVersion.AssemblySemVer)
-				.SetFileVersion(GitVersion.AssemblySemFileVer)
-				.SetInformationalVersion(GitVersion.InformationalVersion)
-				.SetMaxCpuCount(Environment.ProcessorCount)
-				.SetNodeReuse(IsLocalBuild);
+				_ = _.AddProperty("RunOctoPack", "true")
+				.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
+				.AddProperty("OctoPackEnforceAddingFiles", "true")
+				.AddProperty("OctoPackAppendProjectToFeed", "true")
+				.AddProperty("OctoPackNuGetProperties", $"buildDate={DateTime.Now};author=TeamCity;")
+				.AddProperty("OctoPackPublishPackagesToTeamCity", "true")
+				.AddProperty("OctoPackPublishPackageToFileShare", OctopusOutputDirectory)
+				.EnableTreatWarningsAsErrors();
+			}
 
-				if (InvokedTargets.Contains(Octo_Pack) || InvokedTargets.Contains(Octo_Push) || IsServerBuild)
-				{
-					_ = _.AddProperty("RunOctoPack", "true")
-					.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
-					.AddProperty("OctoPackEnforceAddingFiles", "true")
-					.AddProperty("OctoPackAppendProjectToFeed", "true")
-					.AddProperty("OctoPackNuGetProperties", $"buildDate={DateTime.Now};author=TeamCity;")
-					.AddProperty("OctoPackPublishPackagesToTeamCity", "true")
-					.AddProperty("OctoPackPublishPackageToFileShare", OctopusOutputDirectory)
-					.EnableTreatWarningsAsErrors();
-				}
-
-				return _;
-			});
+			return _;
 		});
+	});
 
 	// http://www.nuke.build/docs/authoring-builds/ci-integration.html#partitioning
 	[Partition(2)] readonly Partition TestPartition;
@@ -258,5 +258,23 @@ class Build : NukeBuild
 			.CombineWith(packages, (_, v) => _.SetPackage(v))
 			);
 		}
+	});
+
+	Target Octo_Create_Release => _ => _
+	.DependsOn(Octo_Push)
+	.Requires(() => !string.IsNullOrWhiteSpace(OCTOPUS_DEPLOY_SERVER))
+	.Requires(() => !string.IsNullOrWhiteSpace(OCTOPACK_PUBLISH_APIKEY))
+	.Requires(() => !string.IsNullOrWhiteSpace(OCTOPUS_PROJECT_NAME))
+	.Executes(() =>
+	{
+		OctopusCreateRelease(_ => _
+		.SetServer(OCTOPUS_DEPLOY_SERVER)
+		.SetApiKey(OCTOPACK_PUBLISH_APIKEY)
+		.SetProject(OCTOPUS_PROJECT_NAME)
+		.SetEnableServiceMessages(true)
+		.SetDefaultPackageVersion(GitVersion.NuGetVersionV2)
+		.SetVersion($"{GitVersion.NuGetVersionV2}.i") //auto increment the release version number to allow TC to create duplicate code releases #extreme_edge_case
+		.SetReleaseNotes("") //TODO: grab the commit comments
+		);
 	});
 }
