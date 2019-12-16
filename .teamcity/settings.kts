@@ -29,10 +29,43 @@ version = "2019.2"
 project {
 
     buildType(Develop)
+    buildType(Master)
 }
 
 object Develop : BuildType({
     name = "Develop"
+
+    params {
+        param("env.Git_Branch", "${DslContext.settingsRoot.paramRefs.buildVcsBranch}")
+    }
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        powerShell {
+            name = "Nuke Build"
+            scriptMode = file {
+                path = "build.ps1"
+            }
+            param("jetbrains_powershell_scriptArguments", "--nologo --target Octo_Create_Release")
+        }
+    }
+
+    triggers {
+        vcs {
+            triggerRules = """-:comment=(\*{3}NO_CI\*{3}):**"""
+            branchFilter = "+:refs/heads/develop"
+            perCheckinTriggering = true
+            groupCheckinsByCommitter = true
+            enableQueueOptimization = false
+        }
+    }
+})
+
+object Master : BuildType({
+    name = "Master"
 
     params {
         param("env.Git_Branch", "${DslContext.settingsRoot.paramRefs.buildVcsBranch}")
