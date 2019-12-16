@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,6 +28,8 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2019.2"
 
 project {
+
+    vcsRoot(HttpsIntegrationGitBirchComScmTpNukeFrameworkTestGit1)
 
     buildType(Develop)
     buildType(Master)
@@ -72,7 +75,7 @@ object Master : BuildType({
     }
 
     vcs {
-        root(DslContext.settingsRoot)
+        root(HttpsIntegrationGitBirchComScmTpNukeFrameworkTestGit1)
     }
 
     steps {
@@ -94,5 +97,19 @@ object Master : BuildType({
             groupCheckinsByCommitter = true
             enableQueueOptimization = false
         }
+    }
+})
+
+object HttpsIntegrationGitBirchComScmTpNukeFrameworkTestGit1 : GitVcsRoot({
+    name = "https://Integration@git.birch.com/scm/tp/nuke.framework.test.git (1)"
+    url = "https://Integration@git.birch.com/scm/tp/nuke.framework.test.git"
+    branch = "refs/heads/develop"
+    branchSpec = """
+        +:refs/heads/(release/*)
+        +:refs/heads/(master/*)
+    """.trimIndent()
+    authMethod = password {
+        userName = "integration"
+        password = "credentialsJSON:20e3f2a9-ceed-4aca-8f27-c7138f886047"
     }
 })
