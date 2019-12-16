@@ -70,10 +70,6 @@ object Develop : BuildType({
 object Master : BuildType({
     name = "Master"
 
-    params {
-        param("env.Git_Branch", "${DslContext.settingsRoot.paramRefs.buildVcsBranch}")
-    }
-
     vcs {
         root(HttpsIntegrationGitBirchComScmTpNukeFrameworkTestGit1)
     }
