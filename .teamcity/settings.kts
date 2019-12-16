@@ -87,6 +87,7 @@ object Master : BuildType({
 
     triggers {
         vcs {
+            enabled = false
             triggerRules = """-:comment=(\*{3}NO_CI\*{3}):**"""
             branchFilter = "+:refs/heads/develop"
             perCheckinTriggering = true
