@@ -33,6 +33,10 @@ project {
 
     buildType(Develop)
     buildType(Master)
+
+    params {
+        param("env.Git_Branch", "${DslContext.settingsRoot.paramRefs.buildVcsBranch}")
+    }
 }
 
 object Develop : BuildType({
