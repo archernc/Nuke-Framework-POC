@@ -34,7 +34,7 @@ class Build : NukeBuild
 	///   - Microsoft VisualStudio     https://nuke.build/visualstudio
 	///   - Microsoft VSCode           https://nuke.build/vscode
 
-	public static int Main() => Execute<Build>(x => x.Test);
+	public static int Main() => Execute<Build>(x => x.Octo_Pack);
 
 	[Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
 	readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -103,31 +103,27 @@ class Build : NukeBuild
 	.DependsOn(Restore)
 	.Executes(() =>
 	{
-		MSBuild(_ =>
-		{
-			_.SetTargetPath(Solution)
-			.SetTargets("Rebuild")
-			.SetConfiguration(Configuration)
-			.SetAssemblyVersion(GitVersion.AssemblySemVer)
-			.SetFileVersion(GitVersion.AssemblySemFileVer)
-			.SetInformationalVersion(GitVersion.InformationalVersion)
-			.SetMaxCpuCount(Environment.ProcessorCount)
-			.SetNodeReuse(IsLocalBuild);
-
-			if (InvokedTargets.Contains(Octo_Pack) || InvokedTargets.Contains(Octo_Push) || IsServerBuild)
-			{
-				_ = _.AddProperty("RunOctoPack", "true")
-				.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
-				.AddProperty("OctoPackEnforceAddingFiles", "true")
-				.AddProperty("OctoPackAppendProjectToFeed", "true")
-				.AddProperty("OctoPackNuGetProperties", $"buildDate={DateTime.Now};author=TeamCity;")
-				.AddProperty("OctoPackPublishPackagesToTeamCity", "true")
-				.AddProperty("OctoPackPublishPackageToFileShare", OctopusOutputDirectory)
-				.EnableTreatWarningsAsErrors();
-			}
-
-			return _;
-		});
+		MSBuild(_ => _
+		.SetWorkingDirectory(Solution.Directory)
+		.SetTargetPath(Solution.Path)
+		.SetTargets("Rebuild")
+		.SetConfiguration(Configuration)
+		.SetAssemblyVersion(GitVersion.AssemblySemVer)
+		.SetFileVersion(GitVersion.AssemblySemFileVer)
+		.SetInformationalVersion(GitVersion.InformationalVersion)
+		.SetMaxCpuCount(Environment.ProcessorCount)
+		.SetNodeReuse(false)
+		.When(InvokedTargets.Contains(Octo_Pack) || InvokedTargets.Contains(Octo_Push) || IsServerBuild, _ =>
+			_.AddProperty("RunOctoPack", "true")
+			.AddProperty("OctoPackPackageVersion", GitVersion.NuGetVersionV2)
+			.AddProperty("OctoPackEnforceAddingFiles", "true")
+			.AddProperty("OctoPackAppendProjectToFeed", "true")
+			.AddProperty("OctoPackNuGetProperties", $"buildDate={DateTime.Now};author=TeamCity;")
+			.AddProperty("OctoPackPublishPackagesToTeamCity", "true")
+			.AddProperty("OctoPackPublishPackageToFileShare", OctopusOutputDirectory)
+			.EnableTreatWarningsAsErrors()
+			)
+		);
 	});
 
 	// http://www.nuke.build/docs/authoring-builds/ci-integration.html#partitioning
