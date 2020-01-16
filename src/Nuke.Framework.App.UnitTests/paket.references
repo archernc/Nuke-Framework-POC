@@ -1,0 +1,4 @@
+Microsoft.AspNet.Mvc
+group Test
+MSTest.TestAdapter
+MSTest.TestFramework

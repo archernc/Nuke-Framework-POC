@@ -1,0 +1,5 @@
+Microsoft.AspNet.Mvc
+Microsoft.AspNet.WebApi.Core
+group Test
+MSTest.TestAdapter
+MSTest.TestFramework

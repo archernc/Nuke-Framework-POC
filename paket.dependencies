@@ -1,0 +1,46 @@
+source https://api.nuget.org/v3/index.json
+framework: >= 4.7.2
+
+nuget NuGet.CommandLine
+
+nuget Antlr ~> 3.5.0.2
+nuget AutoMapper ~> 9.0.0
+nuget bootstrap ~> 4.4.1
+nuget coverlet.msbuild ~> 2.7.0
+nuget jQuery ~> 3.4.1
+nuget jQuery.Validation ~> 1.19.1
+nuget Microsoft.AspNet.Mvc ~> 5.2.7
+nuget Microsoft.AspNet.Razor ~> 3.2.7
+nuget Microsoft.AspNet.Web.Optimization ~> 1.1.3
+nuget Microsoft.AspNet.WebApi ~> 5.2.7
+nuget Microsoft.AspNet.WebApi.Client ~> 5.2.7
+nuget Microsoft.AspNet.WebApi.Core ~> 5.2.7
+nuget Microsoft.AspNet.WebApi.HelpPage ~> 5.2.7
+nuget Microsoft.AspNet.WebApi.WebHost ~> 5.2.7
+nuget Microsoft.AspNet.WebPages ~> 3.2.7
+nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform ~> 2.0.1
+nuget Microsoft.jQuery.Unobtrusive.Validation ~> 3.2.11
+nuget Microsoft.Web.Infrastructure ~> 1.0.0.0
+nuget Modernizr ~> 2.8.3
+nuget Newtonsoft.Json ~> 12.0.3
+nuget Newtonsoft.Json.Bson ~> 1.0.2
+nuget Octopack ~> 3.6.4
+nuget popper.js ~> 1.16.0
+nuget WebGrease ~> 1.6.0
+
+group Build
+	source https://api.nuget.org/v3/index.json
+	framework: netcore3.0, netstandard2.0, netstandard2.1
+	storage: none
+
+	nuget Microsoft.TestPlatform ~> 16.4.0
+	nuget NuGet.Packaging.Core 5.4.0
+	nuget Nuke.Common 0.23.4
+
+group Test
+	source https://api.nuget.org/v3/index.json
+	framework: >= 4.7.2
+
+	nuget Moq ~> 4.13.1
+	nuget MSTest.TestAdapter ~> 2.0.0
+	nuget MSTest.TestFramework ~> 2.0.0

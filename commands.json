@@ -1,0 +1,39 @@
+{
+	"commands": {
+		//"Clear NuGet Cache": {
+		//	"fileName": "cmd.exe",
+		//	"workingDirectory": ".",
+		//	"arguments": "/c .paket\\paket.exe clear-cache --clear-local"
+		//},
+		"Clear Paket Cache": {
+			"fileName": "cmd.exe",
+			"workingDirectory": ".",
+			"arguments": "/c .paket\\paket.exe clear-cache --clear-local"
+		},
+		"Paket Install": {
+			"fileName": "cmd.exe",
+			"workingDirectory": ".",
+			"arguments": "/c .paket\\paket.exe install -f --redirects"
+		},
+		"Paket Restore": {
+			"fileName": "cmd.exe",
+			"workingDirectory": ".",
+			"arguments": "/c .paket\\paket.exe restore -f"
+		},
+		"Paket Update": {
+			"fileName": "cmd.exe",
+			"workingDirectory": ".",
+			"arguments": "/c .paket\\paket.exe update --redirects"
+		}
+		//"Clear Local NuGet Cache": {
+		//  "fileName": "cmd.exe",
+		//  "workingDirectory": ".",
+		//  "arguments": "/c .paket\\nuget.exe local all -clear"
+		//},
+		//"Clear Local NuGet Cache With Log4Net Fixup": {
+		//  "fileName": "powershell.exe",
+		//  "workingDirectory": ".",
+		//  "arguments": "-ExecutionPolicy Bypass -NonInteractive -File .paket\\ClearNuGetCacheWithLog4NetFixup.ps1"
+		//}
+	}
+}

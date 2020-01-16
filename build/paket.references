@@ -1,0 +1,4 @@
+group Build
+Microsoft.TestPlatform
+Nuke.Common
+NuGet.Packaging.Core
